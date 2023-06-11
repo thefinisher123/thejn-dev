@@ -46,11 +46,6 @@ jobs:
           private-key: ${{ secrets.EKS_DEV_APP_SECRET }}
           app-id: ${{ secrets.EKS_DEV_APP_CLIENTID  }}
 
-      - name: Check out an other repo
-        uses: actions/checkout@v2
-        with:
-          repository: owner/repo
-          token: ${{ steps.get-token.outputs.token }}  
       - name: Check out code which have EKS terraform resource file
         uses: actions/checkout@v2
         with:
