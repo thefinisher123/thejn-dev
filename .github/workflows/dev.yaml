@@ -39,4 +39,9 @@ jobs:
       - name: Extend Git credentials
         uses: de-vri-es/setup-git-credentials@v2.0.10
         with:
-         credentials: https://user:${{ steps.get_app_token.outputs.token }}@github.com   
+         credentials: https://user:${{ steps.get_app_token.outputs.token }}@github.com
+      - name: Check out code which have EKS terraform resource file
+        uses: actions/checkout@v2
+        with:
+          repository: vishal267/jn-eks
+          token: ${{ steps.get-token.outputs.token }}
