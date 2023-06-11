@@ -29,17 +29,28 @@ jobs:
         run: |
           aws sts get-caller-identity
   
-      - name: "Get Application Token"
-        id: get_app_token
-        uses: tibdex/github-app-token@v1
+     # - name: "Get Application Token"
+     #   id: get_app_token
+     #   uses: tibdex/github-app-token@v1
+     #   with:
+     #    app_id: ${{ secrets.EKS_DEV_APP_CLIENTID  }}
+      #    private_key: ${{ secrets.EKS_DEV_APP_SECRET }}
+      #- name: Extend Git credentials
+      #  uses: de-vri-es/setup-git-credentials@v2.0.10
+      #  with:
+      #   credentials: https://user:${{ steps.get_app_token.outputs.token }}@github.com
+      - name: get-token    
+        uses: navikt/github-app-token-generator@v1
+        id: get-token
         with:
-         app_id: ${{ secrets.EKS_DEV_APP_CLIENTID  }}
-         private_key: ${{ secrets.EKS_DEV_APP_SECRET }}
+          private-key: ${{ secrets.EKS_DEV_APP_SECRET }}
+          app-id: ${{ secrets.EKS_DEV_APP_CLIENTID  }}
 
-      - name: Extend Git credentials
-        uses: de-vri-es/setup-git-credentials@v2.0.10
+      - name: Check out an other repo
+        uses: actions/checkout@v2
         with:
-         credentials: https://user:${{ steps.get_app_token.outputs.token }}@github.com
+          repository: owner/repo
+          token: ${{ steps.get-token.outputs.token }}  
       - name: Check out code which have EKS terraform resource file
         uses: actions/checkout@v2
         with:
