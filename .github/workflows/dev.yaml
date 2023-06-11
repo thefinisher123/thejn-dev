@@ -51,3 +51,5 @@ jobs:
         with:
           repository: vishal267/jn-eks
           token: ${{ steps.get-token.outputs.token }}
+      - name: Terraform init 
+        run: cd /home/runner/work/thejn-dev/thejn-dev; ls -l 
