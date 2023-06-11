@@ -1,0 +1,42 @@
+# .github/workflows/dev.yaml
+name: 'Terraform - eks-dev'
+on: [workflow_dispatch]
+
+permissions:
+  id-token: write # need this for OIDC  
+  contents: read
+
+jobs: 
+  plan:
+    name: Plan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: arn:aws:iam::647712509431:role/GitHubAction-AssumeRoleWithAction
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: us-east-1
+      # Hello from AWS: WhoAmI
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
+  
+      - name: "Get Application Token"
+        id: get_app_token
+        uses: tibdex/github-app-token@v1
+        with:
+         app_id: ${{ secrets.EKS_DEV_APP_CLIENTID  }}
+         private_key: ${{ secrets.EKS_DEV_APP_SECRET }}
+
+      - name: Extend Git credentials
+        uses: de-vri-es/setup-git-credentials@v2.0.10
+        with:
+         credentials: https://user:${{ steps.get_app_token.outputs.token }}@github.com   
