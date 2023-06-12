@@ -51,9 +51,9 @@ jobs:
         with:
           repository: vishal267/jn-eks
           token: ${{ steps.get-token.outputs.token }}
-          path: eks-tfvars
+          path: eks-resourceTF
       - name: List files in directory 
-        run: ls -l /home/runner/work/eks-tfvars
+        run: ls -l /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF; ls -l /home/runner/work/thejn-dev/thejn-dev
       - name: Terraform init 
         run:  cd terraform/resources/eks; terraform init
       - name: Terraform plan  
