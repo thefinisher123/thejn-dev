@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          path: 'eks-tfvars'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
