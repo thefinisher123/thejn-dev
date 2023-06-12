@@ -14,7 +14,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          path: 'eks-tfvars'
+          path: '/home/runner/work/eks-tfvars'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -54,7 +54,7 @@ jobs:
           repository: vishal267/jn-eks
           token: ${{ steps.get-token.outputs.token }}
       - name: List files in directory 
-        run: ls -l /home/runner/work/thejn-dev/thejn-dev/eks-tfvars
+        run: ls -l /home/runner/work/eks-tfvars
       - name: Terraform init 
         run:  cd terraform/resources/eks; terraform init
       - name: Terraform plan  
