@@ -54,5 +54,5 @@ jobs:
       - name: Terraform init 
         run:  cd terraform/resources/eks; terraform init  
       - name: Terraform plan  
-        run:  cd terraform/resources/eks; terraform plan    
+        run:  cd terraform/resources/eks; terraform plan  -var-file=/home/runner/work/thejn-dev/thejn-dev/eks-dev/variables.tfvars
       
