@@ -1,7 +1,6 @@
 # thejn-dev
 
-1 Create IDP and ASSUME ROLE 
- github actions assume ROLE 
+1 Create IDP and ASSUME ROLE "Github Assume ROLE" 
 
  https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
  
