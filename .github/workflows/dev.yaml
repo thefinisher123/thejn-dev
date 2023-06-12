@@ -56,5 +56,5 @@ jobs:
       - name: List files in directory 
         run: ls -l /home/runner/work/thejn-dev/thejn-dev
       - name: Terraform plan  
-        run:  cd terraform/resources/eks; terraform plan  -var-file=/home/runner/work/thejn-dev/thejn-dev/eks-dev/variables.tfvars
+        run:  cd terraform/resources/eks; terraform plan  -var-file=/home/runner/work/thejn-dev/thejn-dev/terraform/eks-dev/variables.tfvars
       
