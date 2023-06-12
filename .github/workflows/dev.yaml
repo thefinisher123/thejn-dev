@@ -53,7 +53,7 @@ jobs:
           token: ${{ steps.get-token.outputs.token }}
           path: eks-resourceTF
       - name: List files in directory 
-        run: ls -l /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF; ls -l /home/runner/work/thejn-dev/thejn-dev
+        run: ls -l /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF/terraform/resources/eks; ls -l /home/runner/work/thejn-dev/thejn-dev/eks-dev/variables.tfvars
       - name: Terraform init 
         run:  cd terraform/resources/eks; terraform init
       - name: Terraform plan  
