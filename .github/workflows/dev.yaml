@@ -58,4 +58,6 @@ jobs:
         run:  cd /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF/terraform/resources/eks; terraform init
       - name: Terraform plan  
         run:  cd /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF/terraform/resources/eks; terraform plan  -var-file=/home/runner/work/thejn-dev/thejn-dev/eks-dev/variables.tfvars
+      - name: Terraform apply  
+        run:  cd /home/runner/work/thejn-dev/thejn-dev/eks-resourceTF/terraform/resources/eks; terraform apply  -var-file=/home/runner/work/thejn-dev/thejn-dev/eks-dev/variables.tfvars --auto-approve
       
